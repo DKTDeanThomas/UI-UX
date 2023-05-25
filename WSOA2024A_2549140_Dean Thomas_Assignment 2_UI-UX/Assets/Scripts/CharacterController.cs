@@ -10,8 +10,11 @@ public class CharacterController : MonoBehaviour
     public float sForce;
     public SpriteRenderer playerSR;
     public UI ui;
+    public inventoryManager iM;
     public bool window1;
     public bool window2;
+
+    
 
     public float currency = 100f;
     
@@ -28,6 +31,7 @@ public class CharacterController : MonoBehaviour
         if (collision.tag == "ShopTrigger")
         {
             ui.ShopScreen(true);
+            
 
             window1 = true;
 
@@ -38,6 +42,7 @@ public class CharacterController : MonoBehaviour
             ui.ChestScreen(true);
 
             window2 = true;
+            ui.sell = false;
 
         }
 
@@ -50,6 +55,8 @@ public class CharacterController : MonoBehaviour
 
             ui.ShopScreen(false);
             ui.Shop.SetActive(false);
+            ui.Backpack.SetActive(false);
+            ui.sell = false;
 
             window1 = false;
         }
@@ -59,6 +66,7 @@ public class CharacterController : MonoBehaviour
             ui.ChestScreen(false);
             ui.Backpack.SetActive(false);
             ui.Chest.SetActive(false);
+            ui.sell = false;
 
             window2 = false;
         }
@@ -87,31 +95,40 @@ public class CharacterController : MonoBehaviour
             if (Input.GetKey("x"))
             {
                 ui.Shop.SetActive(true);
+                ui.Backpack.SetActive(true);
+                ui.sell = true;
+                ui.BackpackCover.SetActive(true);
 
             }
 
             if (Input.GetKey("z"))
             {
                 ui.Shop.SetActive(false);
-
+                ui.Backpack.SetActive(false);
+                ui.sell = false;
+                ui.BackpackCover.SetActive(false);
             }
         }
 
          if (window2)
-            {
+         {
                 if (Input.GetKey("x"))
                 {
-                    ui.Chest.SetActive(true);
-                    ui.Backpack.SetActive(true);
+                ui.Chest.SetActive(true);
+                ui.Backpack.SetActive(true);
+                ui.sell = false;
+                ui.BackpackCover.SetActive(false);
 
             }
 
                 if (Input.GetKey("z"))
                 {
-                    ui.Chest.SetActive(false);
-                    ui.Backpack.SetActive(false);
-                }
+                ui.Chest.SetActive(false);
+                ui.Backpack.SetActive(false);
+                ui.sell = false;
+                ui.BackpackCover.SetActive(false);
             }
+         }
 
 
 

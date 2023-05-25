@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
- 
+    public bool sell = false;
+
     public GameObject Backpack;
     public GameObject Shop;
     public GameObject Chest;
+
+    public GameObject BackpackCover;
+
+    public GameObject inventoryclose;
 
     public GameObject shopPrompt;
     public GameObject chestPrompt;
@@ -20,6 +25,8 @@ public class UI : MonoBehaviour
     public void ShopScreen(bool show)
     {
         shopPrompt.SetActive(show);
+
+        
        
     }
 

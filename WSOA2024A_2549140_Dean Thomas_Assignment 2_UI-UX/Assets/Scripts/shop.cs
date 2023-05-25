@@ -20,11 +20,16 @@ public class shop : MonoBehaviour
     public void Buy()
     {
 
-        if (item.itemPrice <= inventoryManager.Instance.playerMoney && !inventoryManager.Instance.isfull)
+        if (item.itemPrice <= inventoryManager.Instance.playerMoney)
         {
-           
-            inventoryManager.Instance.itemReceive(item);
-            CurrencySubtract(item.itemPrice);
+            if (!inventoryManager.Instance.isfull)
+            {
+                inventoryManager.Instance.itemReceive(item);
+                CurrencySubtract(item.itemPrice);
+            }
+            else
+                Debug.Log("clear up space in inverntory");
+
         }
         else
             Debug.Log("GOT DAM YO ASS IS BROKE GET ON EBT NOW");
@@ -32,11 +37,13 @@ public class shop : MonoBehaviour
 
     }
 
-    public void Sell()
+    public void Sell(ItemManager items, GameObject slotObject)
     {
-        inventoryManager.Instance.itemGive(item);
-        CurrencyAdd(item.itemPrice);
-        Destroy(gameObject);
+        inventoryManager.Instance.SpawnInventory();
+
+        inventoryManager.Instance.itemGive(items);
+        CurrencyAdd(items.itemPrice);
+        Destroy(slotObject);
     }
 
  
